@@ -1,1 +1,66 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio de Dados</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>// <span>portfólio</span>.dados</h1>
+  <div class="header-right">
+    <button class="btn" onclick="toggleTheme()" id="theme-btn">☀️ tema</button>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <span class="search-icon">⌕</span>
+  <input
+    type="text"
+    id="search"
+    placeholder="buscar projeto..."
+    onkeyup="filterCards()"
+    autocomplete="off"
+  >
+</div>
+
+<p class="section-label">// projetos</p>
+
+<div class="grid" id="grid">
+
+  <div class="card">
+    <span class="card-tag">supply chain</span>
+    <h3>Dashboard Supply Chain</h3>
+    <p>Análise de estoque, vendas e previsão de demanda com Power BI.</p>
+    <a href="#">Ver projeto →</a>
+  </div>
+
+  <div class="card">
+    <span class="card-tag">financeiro</span>
+    <h3>Dashboard Financeiro</h3>
+    <p>Receita, margem e custos consolidados em painel executivo.</p>
+    <a href="#">Ver projeto →</a>
+  </div>
+
+  <div class="card">
+    <span class="card-tag">roadmap</span>
+    <h3>Roadmap Power BI</h3>
+    <p>Plano de estudos interativo de 4 meses com progresso salvo.</p>
+    <a href="roadmap.html">Abrir roadmap →</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  // Apply saved theme immediately
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    document.getElementById('theme-btn').textContent = '🌙 tema';
+  }
+</script>
+</body>
+</html>
