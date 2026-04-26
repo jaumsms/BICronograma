@@ -5,234 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmap Power BI</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* ── Roadmap specific styles ── */
-    .roadmap-header {
-      position: relative;
-      z-index: 10;
-      padding: 40px 32px 0;
-    }
-
-    .roadmap-header h2 {
-      font-family: var(--mono);
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
-    .roadmap-header p {
-      color: var(--muted);
-      font-size: 0.88rem;
-      font-family: var(--mono);
-    }
-
-    /* ── Global progress ── */
-    .global-progress {
-      position: relative;
-      z-index: 10;
-      margin: 28px 32px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-    }
-
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .progress-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .progress-pct {
-      font-family: var(--mono);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--accent2);
-      line-height: 1;
-    }
-
-    .bar-track {
-      height: 8px;
-      background: var(--border);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 99px;
-      width: 0%;
-      transition: width 0.5s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 0 12px rgba(10, 240, 160, 0.4);
-    }
-
-    /* ── Controls ── */
-    .controls {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      gap: 10px;
-      padding: 0 32px 28px;
-    }
-
-    /* ── Months grid ── */
-    .months-grid {
-      position: relative;
-      z-index: 10;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 0 32px 48px;
-    }
-
-    /* ── Month card ── */
-    .month-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      animation: fadeUp 0.4s ease both;
-      transition: border-color var(--trans);
-    }
-
-    .month-card:nth-child(2) { animation-delay: 0.08s; }
-    .month-card:nth-child(3) { animation-delay: 0.16s; }
-    .month-card:nth-child(4) { animation-delay: 0.24s; }
-
-    .month-card.complete {
-      border-color: var(--accent2);
-    }
-
-    .month-head {
-      padding: 16px 20px 14px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .month-title {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-    }
-
-    .month-mini-bar {
-      flex: 1;
-      height: 4px;
-      background: var(--border);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-
-    .month-mini-fill {
-      height: 100%;
-      background: var(--accent2);
-      border-radius: 99px;
-      transition: width 0.4s ease;
-    }
-
-    .month-pct {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      min-width: 30px;
-      text-align: right;
-    }
-
-    /* ── Week items ── */
-    .week-list {
-      padding: 8px 0;
-    }
-
-    .week-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 11px 20px;
-      border-bottom: 1px solid var(--border);
-      transition: background var(--trans);
-      cursor: pointer;
-    }
-
-    .week-item:last-child { border-bottom: none; }
-
-    .week-item:hover {
-      background: rgba(0, 212, 255, 0.04);
-    }
-
-    /* Custom checkbox */
-    .week-item input[type="checkbox"] {
-      display: none;
-    }
-
-    .check-box {
-      width: 18px;
-      height: 18px;
-      border: 1.5px solid var(--muted);
-      border-radius: 4px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--trans);
-      font-size: 11px;
-    }
-
-    .week-item input:checked ~ .check-box {
-      background: var(--accent2);
-      border-color: var(--accent2);
-    }
-
-    .week-item input:checked ~ .check-box::after {
-      content: '✓';
-      color: #080c14;
-      font-weight: 700;
-    }
-
-    .week-label {
-      font-size: 0.87rem;
-      color: var(--text);
-      transition: all var(--trans);
-      line-height: 1.4;
-    }
-
-    .week-item input:checked ~ .week-label {
-      text-decoration: line-through;
-      color: var(--muted);
-    }
-
-    /* ── Back link ── */
-    .back-link {
-      position: relative;
-      z-index: 10;
-      padding: 24px 32px 0;
-    }
-
-    @media (max-width: 600px) {
-      .roadmap-header { padding: 28px 20px 0; }
-      .global-progress { margin: 20px; }
-      .controls { padding: 0 20px 20px; flex-wrap: wrap; }
-      .months-grid { padding: 0 20px 36px; }
-      .back-link { padding: 20px 20px 0; }
-    }
-  </style>
 </head>
+
 <body>
 
 <header>
@@ -242,169 +16,154 @@
   </div>
 </header>
 
-<div class="back-link">
-  <a href="INDEX.html" class="btn">← voltar ao portfólio</a>
+<!-- 🔥 LINK CORRIGIDO -->
+<div class="back-link" style="padding:20px 32px;">
+  <a href="/BICronograma/" class="btn">← voltar ao portfólio</a>
 </div>
 
-<div class="roadmap-header">
-  <h2>Roadmap Power BI</h2>
-  <p>// plano de estudos — 4 meses · 16 semanas</p>
-</div>
+<section style="padding:0 32px;">
+  <h2 style="color:var(--accent)">Roadmap Power BI</h2>
+  <p style="color:var(--muted)">// 4 meses · 16 semanas</p>
+</section>
 
-<div class="global-progress">
-  <div class="progress-header">
-    <span class="progress-label">// progresso total</span>
-    <span class="progress-pct" id="pct-text">0%</span>
+<!-- PROGRESSO GLOBAL -->
+<div style="margin:20px 32px;">
+  <div style="display:flex; justify-content:space-between;">
+    <span>// progresso</span>
+    <span id="pct">0%</span>
   </div>
-  <div class="bar-track">
-    <div class="bar-fill" id="bar-fill"></div>
+
+  <div style="background:var(--border); height:8px; border-radius:10px;">
+    <div id="bar" style="height:100%; width:0%; background:var(--accent2); border-radius:10px;"></div>
   </div>
 </div>
 
-<div class="controls">
-  <button class="btn btn-accent" onclick="resetProgress()">↺ resetar progresso</button>
+<!-- RESET -->
+<div style="padding:0 32px 20px;">
+  <button class="btn btn-accent" onclick="resetProgress()">resetar</button>
 </div>
 
-<div class="months-grid" id="months-grid"></div>
+<!-- CONTEÚDO -->
+<div id="grid" style="display:grid; gap:20px; padding:0 32px 40px;"></div>
 
 <script>
-  // ── Theme persistence ──
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-    document.getElementById('theme-btn').textContent = '🌙 tema';
+/* ---------------- THEME ---------------- */
+if (localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light');
+  document.getElementById('theme-btn').textContent = '🌙 tema';
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  const isLight = document.body.classList.contains('light');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  document.getElementById('theme-btn').textContent = isLight ? '🌙 tema' : '☀️ tema';
+}
+
+/* ---------------- DATA ---------------- */
+const data = [
+  {
+    month: "Mês 1 — Fundamentos",
+    weeks: [
+      "Introdução ao Power BI",
+      "Tabelas fato e dimensão",
+      "Power Query (ETL)",
+      "Conexões com Excel e SQL"
+    ]
+  },
+  {
+    month: "Mês 2 — DAX",
+    weeks: [
+      "DAX básico",
+      "CALCULATE e FILTER",
+      "Visualizações",
+      "Design de dashboards"
+    ]
+  },
+  {
+    month: "Mês 3 — Avançado",
+    weeks: [
+      "Storytelling",
+      "DAX avançado",
+      "Performance",
+      "Projeto prático"
+    ]
+  },
+  {
+    month: "Mês 4 — Profissional",
+    weeks: [
+      "Power BI Service",
+      "Automação",
+      "Projeto portfólio",
+      "Deploy"
+    ]
   }
+];
 
-  function toggleTheme() {
-    document.body.classList.toggle('light');
-    const isLight = document.body.classList.contains('light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    document.getElementById('theme-btn').textContent = isLight ? '🌙 tema' : '☀️ tema';
-  }
+/* ---------------- RENDER ---------------- */
+const grid = document.getElementById("grid");
 
-  // ── Data ──
-  const data = [
-    {
-      month: "Mês 1 — Fundamentos",
-      weeks: [
-        "Introdução ao Power BI e conceitos de BI",
-        "Tabelas fato e dimensão (modelagem estrela)",
-        "Power Query — ETL e transformações",
-        "Conexões com Excel, CSV e SQL Server"
-      ]
-    },
-    {
-      month: "Mês 2 — DAX & Visual",
-      weeks: [
-        "DAX básico — SUM, COUNT, AVERAGE, CALCULATE",
-        "DAX intermediário — FILTER, ALL, RELATED",
-        "Visualizações nativas e melhores práticas",
-        "Design de dashboards — hierarquia visual"
-      ]
-    },
-    {
-      month: "Mês 3 — Avançado",
-      weeks: [
-        "Storytelling com dados",
-        "DAX avançado — time intelligence, RANKX",
-        "Otimização de performance e modelo",
-        "Projeto prático completo"
-      ]
-    },
-    {
-      month: "Mês 4 — Profissional",
-      weeks: [
-        "Power BI Service — publicação e workspace",
-        "Automação com Power Automate",
-        "Projeto portfólio — dashboard final",
-        "Deploy, documentação e LinkedIn"
-      ]
-    }
-  ];
+data.forEach((m, mi) => {
+  const card = document.createElement("div");
+  card.style.background = "var(--card)";
+  card.style.padding = "20px";
+  card.style.borderRadius = "10px";
 
-  // ── Render ──
-  const grid = document.getElementById('months-grid');
+  const title = document.createElement("h3");
+  title.textContent = m.month;
 
-  data.forEach((m, mi) => {
-    const card = document.createElement('div');
-    card.className = 'month-card';
-    card.id = `month-${mi}`;
+  card.appendChild(title);
 
-    card.innerHTML = `
-      <div class="month-head">
-        <span class="month-title">${m.month}</span>
-        <div class="month-mini-bar">
-          <div class="month-mini-fill" id="mini-fill-${mi}" style="width:0%"></div>
-        </div>
-        <span class="month-pct" id="month-pct-${mi}">0%</span>
-      </div>
-      <div class="week-list" id="week-list-${mi}"></div>
+  m.weeks.forEach((w, wi) => {
+    const id = `c-${mi}-${wi}`;
+    const saved = localStorage.getItem(id) === "true";
+
+    const div = document.createElement("div");
+    div.style.margin = "8px 0";
+
+    div.innerHTML = `
+      <label>
+        <input type="checkbox" id="${id}" ${saved ? "checked" : ""} onchange="save('${id}')">
+        ${w}
+      </label>
     `;
 
-    const weekList = card.querySelector(`#week-list-${mi}`);
-
-    m.weeks.forEach((w, wi) => {
-      const id = `chk-${mi}-${wi}`;
-      const saved = localStorage.getItem(id) === 'true';
-
-      const item = document.createElement('label');
-      item.className = 'week-item';
-      item.htmlFor = id;
-      item.innerHTML = `
-        <input type="checkbox" id="${id}" ${saved ? 'checked' : ''}>
-        <div class="check-box"></div>
-        <span class="week-label">${w}</span>
-      `;
-
-      item.querySelector('input').addEventListener('change', e => {
-        localStorage.setItem(id, e.target.checked);
-        updateProgress();
-      });
-
-      weekList.appendChild(item);
-    });
-
-    grid.appendChild(card);
+    card.appendChild(div);
   });
 
-  // ── Progress update ──
-  function updateProgress() {
-    let totalDone = 0;
-    let totalAll = 0;
+  grid.appendChild(card);
+});
 
-    data.forEach((m, mi) => {
-      let monthDone = 0;
-      m.weeks.forEach((_, wi) => {
-        const cb = document.getElementById(`chk-${mi}-${wi}`);
-        if (cb && cb.checked) { monthDone++; totalDone++; }
-        totalAll++;
-      });
+/* ---------------- PROGRESS ---------------- */
+function save(id) {
+  const checked = document.getElementById(id).checked;
+  localStorage.setItem(id, checked);
+  update();
+}
 
-      const pct = Math.round((monthDone / m.weeks.length) * 100);
-      const miniBar = document.getElementById(`mini-fill-${mi}`);
-      const monthPct = document.getElementById(`month-pct-${mi}`);
-      const card = document.getElementById(`month-${mi}`);
+function update() {
+  const all = document.querySelectorAll("input[type='checkbox']");
+  let done = 0;
 
-      if (miniBar) miniBar.style.width = pct + '%';
-      if (monthPct) monthPct.textContent = pct + '%';
-      if (card) card.classList.toggle('complete', pct === 100);
-    });
+  all.forEach(c => {
+    if (c.checked) done++;
+  });
 
-    const globalPct = Math.round((totalDone / totalAll) * 100);
-    document.getElementById('bar-fill').style.width = globalPct + '%';
-    document.getElementById('pct-text').textContent = globalPct + '%';
-  }
+  const pct = Math.round((done / all.length) * 100);
 
-  function resetProgress() {
-    if (!confirm('Resetar todo o progresso?')) return;
-    data.forEach((m, mi) => {
-      m.weeks.forEach((_, wi) => localStorage.removeItem(`chk-${mi}-${wi}`));
-    });
-    location.reload();
-  }
+  document.getElementById("pct").textContent = pct + "%";
+  document.getElementById("bar").style.width = pct + "%";
+}
 
-  // Init
-  updateProgress();
+/* ---------------- RESET ---------------- */
+function resetProgress() {
+  localStorage.clear();
+  location.reload();
+}
+
+update();
 </script>
+
 </body>
 </html>
 
