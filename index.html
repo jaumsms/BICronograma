@@ -3,377 +3,302 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio de Dados — João Vitor</title>
+  <title>João Vitor — Analista de Dados & BI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .section-divider {
-      position: relative;
-      z-index: 10;
-      height: 1px;
-      background: var(--border);
-      margin: 8px 32px 0;
-    }
-
-    /* ── About ── */
-    .about-section {
-      position: relative;
-      z-index: 10;
-      padding: 40px 32px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .about-text .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .about-text h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 18px;
-    }
-
-    .about-text h2 span { color: var(--accent); }
-
-    .about-text p {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 12px;
-    }
-
-    .skills-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .skill-tag {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      padding: 5px 12px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--muted);
-      background: var(--card);
-      transition: all var(--trans);
-    }
-
-    .skill-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0, 212, 255, 0.06);
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      transition: all var(--trans);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity var(--trans);
-    }
-
-    .stat-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(0,212,255,0.1);
-    }
-
-    .stat-card:hover::before { opacity: 1; }
-
-    .stat-icon { font-size: 1.4rem; margin-bottom: 10px; display: block; }
-    .stat-value {
-      font-family: var(--mono);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent2);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
-
-    /* ── Contact ── */
-    .contact-section {
-      position: relative;
-      z-index: 10;
-      padding: 0 32px 56px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .contact-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      transition: all var(--trans);
-      animation: fadeUp 0.4s ease both;
-    }
-
-    .contact-card:nth-child(2) { animation-delay: 0.07s; }
-    .contact-card:nth-child(3) { animation-delay: 0.14s; }
-    .contact-card:nth-child(4) { animation-delay: 0.21s; }
-
-    .contact-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(0, 212, 255, 0.1);
-    }
-
-    .contact-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: rgba(0, 212, 255, 0.08);
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      transition: all var(--trans);
-    }
-
-    .contact-card:hover .contact-icon {
-      background: rgba(0, 212, 255, 0.15);
-      box-shadow: 0 0 16px rgba(0,212,255,0.2);
-    }
-
-    .contact-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .contact-value {
-      font-size: 0.85rem;
-      color: var(--text);
-      font-weight: 600;
-      word-break: break-all;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      position: relative;
-      z-index: 10;
-      border-top: 1px solid var(--border);
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .site-footer p {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    .site-footer span { color: var(--accent); }
-
-    /* ── Responsive ── */
-    @media (max-width: 700px) {
-      .about-section { grid-template-columns: 1fr; padding: 32px 20px; gap: 28px; }
-      .section-divider { margin: 8px 20px 0; }
-      .contact-section { padding: 0 20px 40px; }
-      .site-footer { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; }
-    }
-  </style>
 </head>
 <body>
 
-<header>
-  <h1>// <span>portfólio</span>.dados</h1>
-  <div class="header-right">
-    <button class="btn" onclick="toggleTheme()" id="theme-btn">☀️ tema</button>
-  </div>
-</header>
-
-<!-- Search -->
-<div class="search-wrap">
-  <span class="search-icon">⌕</span>
-  <input type="text" id="search" placeholder="buscar projeto..." onkeyup="filterCards()" autocomplete="off">
-</div>
-
-<!-- Projects -->
-<p class="section-label">// projetos</p>
-
-<div class="grid" id="grid">
-  <div class="card">
-    <span class="card-tag">supply chain</span>
-    <h3>Dashboard Supply Chain</h3>
-    <p>Análise de estoque, vendas e previsão de demanda com Power BI.</p>
-    <a href="#">Ver projeto →</a>
-  </div>
-
-  <div class="card">
-    <span class="card-tag">financeiro</span>
-    <h3>Dashboard Financeiro</h3>
-    <p>Receita, margem e custos consolidados em painel executivo.</p>
-    <a href="#">Ver projeto →</a>
-  </div>
-
-  <div class="card">
-    <span class="card-tag">roadmap</span>
-    <h3>Roadmap Power BI</h3>
-    <p>Plano de estudos interativo de 4 meses com progresso salvo.</p>
-    <a href="roadmap.html">Abrir roadmap →</a>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- About -->
-<p class="section-label">// sobre mim</p>
-
-<div class="about-section">
-  <div class="about-text">
-    <span class="eyebrow">// quem sou</span>
-    <h2>João Vitor<br><span>Santana de Morais</span></h2>
-    <p>
-      Graduando em <strong>Engenharia de Produção</strong>, com foco em análise de dados,
-      inteligência de negócios e automação de processos.
-    </p>
-    <p>
-      Atuo com <strong>Power BI</strong> desde a modelagem e construção de dashboards executivos
-      até publicação e automação via Power BI Service e Power Automate.
-      Experiência prática com SQL, Power Query e Excel avançado.
-    </p>
-    <p>
-      Este portfólio reúne projetos reais e minha jornada contínua de aprendizado em dados.
-    </p>
-    <div class="skills-wrap">
-      <span class="skill-tag">Power BI</span>
-      <span class="skill-tag">DAX</span>
-      <span class="skill-tag">Power Query</span>
-      <span class="skill-tag">SQL</span>
-      <span class="skill-tag">Power Automate</span>
-      <span class="skill-tag">Excel Avançado</span>
-      <span class="skill-tag">ETL</span>
-      <span class="skill-tag">Eng. de Produção</span>
+<!-- ── NAV ── -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">JV<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">início</a></li>
+      <li><a href="#projetos">projetos</a></li>
+      <li><a href="#sobre">sobre</a></li>
+      <li><a href="#contato">contato</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-theme" onclick="toggleTheme()" id="theme-btn" title="Alternar tema">
+        <span id="theme-icon">☀</span>
+      </button>
+      <a href="CV_JoaoVitor_PT_final.docx" download class="btn-cv">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
     </div>
+    <button class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#home" onclick="closeMenu()">início</a>
+    <a href="#projetos" onclick="closeMenu()">projetos</a>
+    <a href="#sobre" onclick="closeMenu()">sobre</a>
+    <a href="#contato" onclick="closeMenu()">contato</a>
+    <a href="CV_JoaoVitor_PT_final.docx" download class="btn-cv mobile">↓ Download CV</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-grid"></div>
   </div>
 
-  <div class="about-stats">
-    <div class="stat-card">
-      <span class="stat-icon">📊</span>
-      <div class="stat-value">BI</div>
-      <div class="stat-label">Power BI & dashboards executivos</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">⚙️</span>
-      <div class="stat-value">ETL</div>
-      <div class="stat-label">Power Query & automação</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">🎓</span>
-      <div class="stat-value">Eng.</div>
-      <div class="stat-label">Graduando em Eng. de Produção</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">🚀</span>
-      <div class="stat-value">16w</div>
-      <div class="stat-label">roadmap de estudos ativo</div>
-    </div>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- Contact -->
-<p class="section-label">// contato</p>
-
-<div class="contact-section">
-  <div class="contact-grid">
-
-    <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-santana-de-morais-834a75227" target="_blank" class="contact-card">
-      <div class="contact-icon">💼</div>
-      <div class="contact-info">
-        <div class="contact-label">LinkedIn</div>
-        <div class="contact-value">João Vitor S. Morais</div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">
+        <span class="dot"></span> disponível para oportunidades
+      </span>
+      <h1 class="hero-title">
+        Olá, sou<br>
+        <span class="hero-name">João Vitor</span>
+      </h1>
+      <div class="hero-role">
+        <span class="role-static">Analista de </span>
+        <span class="role-typed" id="typed"></span>
+        <span class="cursor-blink">|</span>
       </div>
-    </a>
-
-    <a href="https://github.com/jaumsms" target="_blank" class="contact-card">
-      <div class="contact-icon">🐙</div>
-      <div class="contact-info">
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">@jaumsms</div>
+      <p class="hero-desc">
+        Analista de S&OP na <strong>Niterra do Brasil</strong>. Transformo dados complexos em
+        decisões estratégicas com Power BI, SQL e Python.
+        Graduando em Engenharia de Produção.
+      </p>
+      <div class="hero-btns">
+        <a href="#projetos" class="btn-primary">Ver projetos</a>
+        <a href="#contato" class="btn-outline">Entrar em contato</a>
       </div>
-    </a>
-
-    <a href="mailto:santanajoao0981@gmail.com" class="contact-card">
-      <div class="contact-icon">📧</div>
-      <div class="contact-info">
-        <div class="contact-label">E-mail</div>
-        <div class="contact-value">santanajoao0981@gmail.com</div>
+      <div class="hero-badges">
+        <span class="badge">Power BI</span>
+        <span class="badge">SQL</span>
+        <span class="badge">Python</span>
+        <span class="badge">AWS</span>
+        <span class="badge">S&OP</span>
       </div>
-    </a>
+    </div>
 
-    <a href="https://wa.me/5511954716259" target="_blank" class="contact-card">
-      <div class="contact-icon">💬</div>
-      <div class="contact-info">
-        <div class="contact-label">WhatsApp</div>
-        <div class="contact-value">(11) 95471-6259</div>
+    <div class="hero-visual">
+      <div class="photo-wrap">
+        <div class="photo-blob"></div>
+        <div class="photo-placeholder">
+          <div class="avatar-initials">JV</div>
+          <p>Adicione sua foto</p>
+        </div>
+        <div class="photo-ring"></div>
+        <div class="float-card card-top">
+          <span class="fc-icon">📊</span>
+          <div>
+            <div class="fc-label">Dashboards</div>
+            <div class="fc-value">Power BI & AWS</div>
+          </div>
+        </div>
+        <div class="float-card card-bot">
+          <span class="fc-icon">🚀</span>
+          <div>
+            <div class="fc-label">Impacto</div>
+            <div class="fc-value">+55% eficiência</div>
+          </div>
+        </div>
       </div>
-    </a>
-
+    </div>
   </div>
-</div>
 
-<footer class="site-footer">
-  <p>// portfólio de <span>João Vitor Santana de Morais</span></p>
-  <p>Engenharia de Produção · Análise de Dados · <span>Power BI</span></p>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── PROJETOS ── -->
+<section class="section" id="projetos">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">// 01 — projetos</span>
+      <h2 class="section-title">Dashboards & <span>Portfólio</span></h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <article class="project-card featured">
+        <div class="project-top">
+          <span class="project-tag">supply chain</span>
+          <span class="project-status live">● live</span>
+        </div>
+        <h3>Dashboard Supply Chain</h3>
+        <p>Análise de estoque, vendas e previsão de demanda. Controle de KPIs de ruptura, cobertura e nível de serviço.</p>
+        <div class="project-stack">
+          <span>Power BI</span><span>SQL</span><span>DAX</span>
+        </div>
+        <a href="#" class="project-link">Ver projeto <span>→</span></a>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top">
+          <span class="project-tag">financeiro</span>
+        </div>
+        <h3>Dashboard Financeiro</h3>
+        <p>Receita, margem e custos consolidados em painel executivo para tomada de decisão.</p>
+        <div class="project-stack">
+          <span>Power BI</span><span>Excel</span><span>DAX</span>
+        </div>
+        <a href="#" class="project-link">Ver projeto <span>→</span></a>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top">
+          <span class="project-tag">estudos</span>
+          <span class="project-status live">● ativo</span>
+        </div>
+        <h3>Roadmap Power BI</h3>
+        <p>Plano de estudos interativo de 4 meses com progresso salvo por semana.</p>
+        <div class="project-stack">
+          <span>HTML</span><span>CSS</span><span>JS</span>
+        </div>
+        <a href="roadmap.html" class="project-link">Abrir roadmap <span>→</span></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE ── -->
+<section class="section section-alt" id="sobre">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">// 02 — sobre</span>
+      <h2 class="section-title">Quem sou <span>eu</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Sou <strong>João Vitor Santana de Morais</strong>, Analista de S&OP na
+          <strong>Niterra do Brasil</strong>, graduando em <strong>Engenharia de Produção</strong>
+          pela Universidade Braz Cubas (conclusão em 2026).
+        </p>
+        <p>
+          Especializado em transformar grandes volumes de dados operacionais em insights
+          estratégicos. Tenho histórico comprovado com soluções de BI que geraram resultados
+          mensuráveis: redução de 55% de material ocioso e melhoria de 51% na eficiência
+          de decisão em projetos anteriores.
+        </p>
+        <p>
+          Atuo com Power BI, SQL, Python, AWS Athena e QuickSight para suportar ciclos
+          completos de S&OP, análise de demanda e automação de processos.
+        </p>
+        <div class="about-certs">
+          <span class="cert">🏆 Yellow Belt</span>
+          <span class="cert">📊 Power BI Avançado</span>
+          <span class="cert">🗃️ SQL Avançado</span>
+          <span class="cert">📈 Excel Avançado</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="sg-label">Análise & BI</div>
+          <div class="sg-items">
+            <span>Power BI</span><span>DAX</span><span>Power Query</span>
+            <span>Looker</span><span>QuickSight</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="sg-label">Dados & Cloud</div>
+          <div class="sg-items">
+            <span>SQL</span><span>Python</span><span>AWS Athena</span>
+            <span>S3</span><span>Glue</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="sg-label">Planejamento</div>
+          <div class="sg-items">
+            <span>S&OP</span><span>Demanda</span><span>Estoques</span>
+            <span>KPIs</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="sg-label">Idiomas</div>
+          <div class="sg-items">
+            <span>Português — Nativo</span>
+            <span>Inglês — Intermediário</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTATO ── -->
+<section class="section" id="contato">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">// 03 — contato</span>
+      <h2 class="section-title">Vamos <span>conversar?</span></h2>
+      <p class="section-sub">Aberto a oportunidades, projetos e colaborações.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-santana-de-morais-834a75227" target="_blank" class="contact-card">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div class="cc-body">
+          <div class="cc-label">LinkedIn</div>
+          <div class="cc-value">João Vitor S. Morais</div>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
+
+      <a href="https://github.com/jaumsms" target="_blank" class="contact-card">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </div>
+        <div class="cc-body">
+          <div class="cc-label">GitHub</div>
+          <div class="cc-value">@jaumsms</div>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
+
+      <a href="mailto:santanajoao0981@gmail.com" class="contact-card">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="cc-body">
+          <div class="cc-label">E-mail</div>
+          <div class="cc-value">santanajoao0981@gmail.com</div>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
+
+      <a href="https://wa.me/5511954716259" target="_blank" class="contact-card">
+        <div class="cc-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.478 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.108-1.335A9.946 9.946 0 0 0 12 22c5.522 0 10-4.477 10-10S17.522 2 11.999 2z"/></svg>
+        </div>
+        <div class="cc-body">
+          <div class="cc-label">WhatsApp</div>
+          <div class="cc-value">(11) 95471-6259</div>
+        </div>
+        <span class="cc-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-logo">JV<span>.</span></span>
+    <p>© 2025 João Vitor Santana de Morais · Engenharia de Produção · Análise de Dados</p>
+  </div>
 </footer>
 
 <script src="script.js"></script>
-<script>
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-    document.getElementById('theme-btn').textContent = '🌙 tema';
-  }
-</script>
 </body>
 </html>
